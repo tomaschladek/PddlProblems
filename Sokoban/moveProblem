@@ -1,0 +1,41 @@
+(define (problem move)
+    (:domain sokoban)
+    (:objects position1x1 position2x1 position3x1 position4x1 position1x2 position2x2 position3x2 position4x2 man empty)
+    (:init
+        (position position1x1) (position position2x1) (position position3x1) (position position4x1)
+        (position position1x2) (position position2x2) (position position3x2) (position position4x2)
+        
+        (man man)
+        (isEmpty empty)
+        
+        (at empty position1x1) (at man position2x1)     (at empty position3x1) (at empty position4x1) 
+        (at empty position1x2) (at empty position2x2)   (at empty position3x2) (at empty position4x2)
+        
+        ;; Left => Right
+        (adjenced position1x1 position2x1)
+        (adjenced position2x1 position3x1)
+        (adjenced position3x1 position4x1)
+        
+        ;; Right => Left
+        (adjenced position2x1 position1x1)
+        (adjenced position3x1 position2x1)
+        (adjenced position4x1 position3x1)
+        
+        ;; Top => Down
+        (adjenced position1x1 position1x2)
+        (adjenced position2x1 position2x2)
+        (adjenced position3x1 position3x2)
+        (adjenced position4x1 position4x2)
+        
+        ;; Bottom => Up
+        (adjenced position1x2 position1x1)
+        (adjenced position2x2 position2x1)
+        (adjenced position3x2 position3x1)
+        (adjenced position4x2 position4x1)
+    )
+    (:goal
+        (and 
+            (at man position4x2)
+        )
+    )
+)
